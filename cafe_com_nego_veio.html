@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café com Nego Véio – Conselho de Nego</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cafe-escuro: #2C1810;
+    --cafe-medio: #5C3317;
+    --cafe-claro: #8B5E3C;
+    --bege-quente: #F5E6D3;
+    --bege-medio: #EDD9BE;
+    --bege-claro: #FAF3EA;
+    --terra: #A0522D;
+    --areia: #D4A97A;
+    --texto-escuro: #1E0E05;
+    --texto-medio: #4A2C1A;
+    --folha: #5C7A3A;
+    --card-bg: #F0E2CC;
+    --card-borda: #C8A87A;
+    --sombra: rgba(44, 24, 16, 0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bege-claro);
+    background-image: 
+      radial-gradient(ellipse at 20% 0%, rgba(160, 82, 45, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(92, 51, 23, 0.07) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    color: var(--texto-escuro);
+    font-family: 'sans-serif', Georgia, serif;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    max-height: 700px;
+  }
+
+  .header img {
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .header-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 220px;
+    background: linear-gradient(to top, var(--bege-claro), transparent);
+  }
+
+  /* INTRO */
+  .intro-section {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 20px 20px;
+    text-align: center;
+  }
+
+  .logo-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2rem, 7vw, 3rem);
+    color: var(--cafe-escuro);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .logo-subtitle {
+    font-family: 'sans-serif', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    color: var(--cafe-claro);
+    margin-bottom: 24px;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px auto;
+    max-width: 320px;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--areia);
+  }
+  .divider-icon { color: var(--cafe-claro); font-size: 1.1rem; }
+
+  .intro-text {
+    font-family: 'sans-serif', serif;
+    font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+    line-height: 1.9;
+    color: var(--texto-medio);
+    text-align: left;
+    background: rgba(255,255,255,0.45);
+    border: 1px solid var(--card-borda);
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: 0 2px 18px var(--sombra);
+  }
+
+  .intro-text p { margin-bottom: 12px; }
+  .intro-text p:last-child { margin-bottom: 0; }
+
+  .sarava {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--cafe-escuro);
+    margin-top: 8px;
+    display: block;
+    text-align: right;
+  }
+
+  /* DATA INPUT */
+  .data-section {
+    max-width: 680px;
+    margin: 32px auto 0;
+    padding: 0 20px;
+  }
+
+  .data-box {
+    background: var(--cafe-escuro);
+    border-radius: 16px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 24px rgba(44,24,16,0.25);
+  }
+
+  .data-icon { font-size: 1.8rem; flex-shrink: 0; }
+
+  .data-label {
+    font-family: 'sans-serif', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--areia);
+    margin-bottom: 4px;
+  }
+
+  .data-input {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(212,169,122,0.4);
+    border-radius: 10px;
+    padding: 10px 16px;
+    color: #fff;
+    font-family: 'sans-serif', serif;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 200px;
+    cursor: pointer;
+  }
+  .data-input::-webkit-calendar-picker-indicator { filter: invert(1); opacity: 0.7; }
+  .data-input:focus { outline: 2px solid var(--areia); }
+
+  .data-hint {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-top: 4px;
+    font-family: 'sans-serif', serif;
+  }
+
+  /* CARDS CONTAINER */
+  .cards-section {
+    max-width: 680px;
+    margin: 32px auto 60px;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .section-label {
+    font-family: 'sans-serif', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cafe-claro);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-borda);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px var(--sombra);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    margin-bottom: 24px;
+  }
+
+  .card:hover { box-shadow: 0 5px 20px rgba(44,24,16,0.22); }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    cursor: pointer;
+    gap: 10px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .card-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-numero {
+    font-family: 'sans-serif', serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--cafe-claro);
+    background: rgba(139,94,60,0.14);
+    border-radius: 6px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+  }
+
+  .card-titulo {
+    font-family: 'sans-serif', serif;
+    font-size: clamp(0.88rem, 3.5vw, 1rem);
+    font-weight: 700;
+    color: var(--cafe-escuro);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-data-badge {
+    font-family: 'sans-serif', serif;
+    font-size: 0.75rem;
+    color: var(--cafe-claro);
+    background: rgba(160,82,45,0.1);
+    border: 1px solid rgba(160,82,45,0.2);
+    border-radius: 8px;
+    padding: 3px 9px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    display: none;
+  }
+
+  .card-data-badge.visivel { display: block; }
+
+  .card-toggle {
+    color: var(--cafe-claro);
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .card.aberto .card-toggle { transform: rotate(180deg); }
+
+  /* CARD BODY */
+  .card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card.aberto .card-body { max-height: 1000px; }
+
+  .card-content {
+    padding: 0 18px 18px;
+    border-top: 1px solid rgba(200,168,122,0.4);
+    padding-top: 16px;
+  }
+
+  .card-texto {
+    font-family: 'sans-serif', serif;
+    font-size: clamp(0.92rem, 3.2vw, 1rem);
+    line-height: 1.85;
+    color: var(--texto-medio);
+    margin-bottom: 16px;
+    white-space: pre-line;
+  }
+
+  .card-conselho {
+    background: rgba(92,122,58,0.1);
+    border-left: 3px solid var(--folha);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    font-family: 'sans-serif', serif;
+    font-size: 0.9rem;
+    color: var(--texto-escuro);
+    font-style: italic;
+  }
+
+  .card-bencao {
+    background: rgba(139,94,60,0.09);
+    border-left: 3px solid var(--areia);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-family: 'sans-serif', serif;
+    font-size: 0.9rem;
+    color: var(--texto-medio);
+  }
+
+  .btn-topo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background: transparent;
+    border: 1px solid var(--card-borda);
+    border-radius: 100px;
+    color: var(--cafe-claro);
+    font-family: 'sans-serif', serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-topo:hover { background: var(--cafe-escuro); color: #fff; border-color: var(--cafe-escuro); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 32px 20px 48px;
+    color: var(--cafe-claro);
+    font-family: 'sans-serif', serif;
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+
+  /* MOBILE tweaks */
+  @media (max-width: 480px) {
+    .header img { height: 260px; }
+    .header { max-height: 260px; }
+    .header-overlay { height: 100px; }
+    .card { margin-bottom: 20px; }
+    .data-box { padding: 18px 16px; }
+    .card-header { padding: 12px 14px; }
+    .card-content { padding: 14px 14px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER IMAGE -->
+<div class="header" id="topo">
+  <img src="Imagem_Pagina_Café_Com_Nego_Véio.png" alt="Café com Nego Véio" />
+  <div class="header-overlay"></div>
+</div>
+
+<!-- INTRO -->
+<section class="intro-section">
+  <div class="logo-title">Café com Nego Véio</div>
+  <div class="logo-subtitle">Conselho de Nego</div>
+
+  <div class="divider"><span class="divider-icon">🌿</span></div>
+
+  <div class="intro-text">
+    <p>Ô meu fio e minha fia…</p>
+    <p>Antes de ocê seguir nessas página, Nego Véio quer lhe dizer um cadinho de prosa.</p>
+    <p>Esse livro num é só palavra escrita.<br>É conselho dito com calma.<br>É sabedoria soprada manso, igual vô que ensina sem levantar a voz.</p>
+    <p>Cada reflexão aqui é como café passado na hora:<br>simples, quente e direto no coração.</p>
+    <p>Num tem milagre fácil, num tem promessa vazia.<br>Tem é aprendizado.<br>Tem é lembrança de que tudo tem seu tempo,<br>e que a fé precisa de paciência pra florescer.</p>
+    <p>Leia devagar.<br>Sinta cada palavra.<br>Converse com o Alto depois.</p>
+    <p>Se abrir esse livro com humildade,<br>ele vai conversar com sua alma.</p>
+    <p>Agora respira fundo…<br>pega sua xícara…<br>e venha prosear com Nego Véio.</p>
+    <span class="sarava">Saravá ☕</span>
+  </div>
+</section>
+
+<!-- DATA -->
+<section class="data-section">
+  <div class="data-box">
+    <div class="data-icon">📅</div>
+    <div style="flex:1; min-width:180px;">
+      <div class="data-label">Período Início Leitura</div>
+      <input type="date" id="dataInicio" class="data-input" />
+      <div class="data-hint">Escolha sua data de início para ver os dias em cada card</div>
+    </div>
+  </div>
+</section>
+
+<!-- CARDS -->
+<section class="cards-section">
+  <p class="section-label">🌿 90 dias de sabedoria 🌿</p>
+  <div id="cardsContainer"></div>
+</section>
+
+<footer>
+  Por Tenda Espirita Umbandista Cavaleiros de Aruanda (TEUCA) &nbsp;·&nbsp; CNPJ: 51.213.943/0001-33
+</footer>
+
+<script>
+const dias = [
+  { titulo: "Senta Aqui, Fio", texto: "Chega mais perto…\nPuxa o banco e aquieta esse coração.\nOcê anda querendo resposta pra tudo, mas num tem feito silêncio pra escutá.\nSabedoria num grita, não.\nEla sopra baixinho.", conselho: "🌿 Conselho: Hoje, escute mais e fale menos.", bencao: "🙏 Benção: Que a serenidade acalme sua mente." },
+  { titulo: "Raiz Cresce Debaixo da Terra", texto: "Ocê vê a árvore bonita…\nMas num vê a raiz que sofreu no escuro.\nAssim é sua vida.\nO que ninguém vê é o que sustenta.", conselho: "🌿 Conselho: Continue firme, mesmo sem aplauso.", bencao: "🙏 Benção: Que sua base seja forte e segura." },
+  { titulo: "Num Confunde Pressa com Fé", texto: "Pressa é ansiedade.\nFé é confiança.\nQuem confia, espera sem se desesperar.\nTempo também é ferramenta do Alto.", conselho: "🌿 Conselho: Confia no processo.", bencao: "🙏 Benção: Que a paciência firme seus passos." },
+  { titulo: "Perdão é Libertação, Fio", texto: "Guardar mágoa é carregar saco de pedra nas costas.\nOcê cansa… e o outro nem sente.\nPerdoar num é esquecer.\nÉ se libertar.", conselho: "🌿 Conselho: Solta o que pesa.", bencao: "🙏 Benção: Que seu coração fique leve." },
+  { titulo: "Vigia Seus Pensamento", texto: "Nem todo ataque vem de fora, não.\nÀs vez, é ocê mesmo alimentando pensamento ruim.\nO que ocê repete na mente vira estrada na vida.", conselho: "🌿 Conselho: Troque reclamação por gratidão.", bencao: "🙏 Benção: Que sua cabeça seja morada de luz." },
+  { titulo: "Trabalho Também é Reza", texto: "Quando ocê trabalha com honestidade, tá rezando com as mão.\nNum adianta falar de fé e viver no desleixo.\nEspiritualidade começa na atitude.", conselho: "🌿 Conselho: Honre sua palavra hoje.", bencao: "🙏 Benção: Que seu esforço seja abençoado." },
+  { titulo: "Nem Todo Mundo Vai Entendê", texto: "Ocê cresce…\nE quem ficou parado estranha.\nMas num diminua seu passo pra caber no medo dos outros.", conselho: "🌿 Conselho: Continue firme, mesmo sem aplauso.", bencao: "🙏 Benção: Que sua luz seja proteção." },
+  { titulo: "Caridade Abre Caminho", texto: "Dar num empobrece, fio.\nCaridade é semente boa.\nO bem que ocê faz volta multiplicado.", conselho: "🌿 Conselho: Faça um bem hoje sem anunciar.", bencao: "🙏 Benção: Que a generosidade lhe acompanhe." },
+  { titulo: "Silêncio Também é Resposta", texto: "Tem provocação que quer sua reação.\nSe ocê responde tudo, perde força.\nÀs vez, calar é vencer.", conselho: "🌿 Conselho: Preserve sua paz.", bencao: "🙏 Benção: Que seu silêncio seja escudo." },
+  { titulo: "Fé é Postura", texto: "Fé num é palavra bonita.\nÉ comportamento diário.\nÉ levantar mesmo cansado.\nÉ fazer certo mesmo difícil.", conselho: "🌿 Conselho: Viva o que acredita.", bencao: "🙏 Benção: Que sua vida confirme sua fé." },
+  { titulo: "Num Carece Corrê, Fio", texto: "Ô meu fio…\nNum adianta corrê mais que o tempo, não.\nO que é seu já tá guardado.\nO que num é… nem se ocê se esgoelar vai segurá.\nVida é igual café no coador…\nSe apressar demais, amarga.", conselho: "🌿 Conselho: Vai com calma hoje.", bencao: "🙏 Benção: Que a paciência lhe ensine o compasso certo." },
+  { titulo: "Coração Pesado Cansa o Corpo", texto: "Ocê acha que é só cansaço físico…\nMas é mágoa guardada, fio.\nQuando o coração pesa, o corpo sente.\nAprende a soltá.", conselho: "🌿 Conselho: Perdoa em silêncio.", bencao: "🙏 Benção: Que sua alma fique leve como vento manso." },
+  { titulo: "Falar Demais Espalha Energia", texto: "Tem coisa que é sagrada, fio.\nPlano contado antes da hora perde força.\nDeixa amadurecê.", conselho: "🌿 Conselho: Guarda seus projetos até firmar.", bencao: "🙏 Benção: Que sua caminhada seja protegida." },
+  { titulo: "Orgulho é Pedra no Caminho", texto: "Ô fio…\nOrgulho num deixa ocê pedir ajuda.\nE ninguém cresce sozinho.\nHumildade abre estrada.", conselho: "🌿 Conselho: Se precisar, peça apoio.", bencao: "🙏 Benção: Que a simplicidade lhe engrandeça." },
+  { titulo: "Inveja Só Entra Onde Tem Brecha", texto: "Se ocê vive se comparando, abre porta.\nQuem confia no próprio passo num se abala.", conselho: "🌿 Conselho: Olhe pra sua trajetória, não pra dos outros.", bencao: "🙏 Benção: Que sua segurança lhe fortaleça." },
+  { titulo: "Fé é Firmeza, Não Desespero", texto: "Desespero grita.\nFé confia.\nQuem tem fé descansa o coração.", conselho: "🌿 Conselho: Entregue o que não controla.", bencao: "🙏 Benção: Que a confiança lhe abrace." },
+  { titulo: "Quem Planta, Colhe", texto: "Num adianta pedir colheita diferente da semente plantada.\nSe quer paz, plante paz.\nSe quer respeito, respeite.", conselho: "🌿 Conselho: Observe o que tem semeado.", bencao: "🙏 Benção: Que sua plantação seja próspera." },
+  { titulo: "Silêncio é Remédio", texto: "Tem discussão que só cresce porque dois querem vencer.\nÀs vez, perder razão é ganhar paz.", conselho: "🌿 Conselho: Escolha a paz hoje.", bencao: "🙏 Benção: Que seu silêncio seja sabedoria." },
+  { titulo: "Cuidado com Palavra Lançada", texto: "Palavra é flecha, fio.\nDepois que sai, num volta.\nPense antes de ferir.", conselho: "🌿 Conselho: Fale só o que edifica.", bencao: "🙏 Benção: Que sua boca seja instrumento de luz." },
+  { titulo: "Num Desanima Agora Não", texto: "Ocê já atravessou coisa pior.\nSe tá difícil, é porque tá crescendo.\nRaiz forte enfrenta tempestade.", conselho: "🌿 Conselho: Continue. Só mais um passo hoje.", bencao: "🙏 Benção: Que a resistência lhe sustente." },
+  { titulo: "Nem Toda Batalha é Sua", texto: "Ô fio…\nOcê num precisa comprá toda briga que aparece.\nTem luta que é do outro.\nE quando ocê entra sem precisão, só perde energia.", conselho: "🌿 Conselho: Escolha bem onde coloca sua força.", bencao: "🙏 Benção: Que sua paz valha mais que qualquer razão." },
+  { titulo: "O Que é Seu, Vem", texto: "Num precisa atropelá ninguém pra chegá primeiro.\nO que é seu já tem nome e endereço.\nAnsiedade só atrapalha o caminho.", conselho: "🌿 Conselho: Confie no merecimento.", bencao: "🙏 Benção: Que nada lhe seja tirado do que é justo." },
+  { titulo: "Num Negocie Sua Paz", texto: "Tem gente que oferece companhia…\nMas cobra sua tranquilidade.\nSe pra manter alguém ocê perde sua paz, o preço tá alto demais.", conselho: "🌿 Conselho: Preserve seu sossego.", bencao: "🙏 Benção: Que sua alma descanse segura." },
+  { titulo: "Promessa Fácil Engana", texto: "Milagre sem esforço é ilusão.\nTudo que é sério exige compromisso.\nDesconfie do que vem fácil demais.", conselho: "🌿 Conselho: Valorize o que exige dedicação.", bencao: "🙏 Benção: Que discernimento lhe acompanhe." },
+  { titulo: "O Mal Se Cansa", texto: "Num se preocupe tanto em revidá.\nQuem planta maldade já tá cavando o próprio buraco.\nJustiça do Alto num falha.", conselho: "🌿 Conselho: Faça o bem e siga andando.", bencao: "🙏 Benção: Que a proteção lhe cubra." },
+  { titulo: "Palavra Doce Cura", texto: "Tem gente que já apanhou tanto da vida…\nQue uma palavra mansa vira remédio.\nOcê num sabe o peso que o outro carrega.", conselho: "🌿 Conselho: Seja gentil hoje.", bencao: "🙏 Benção: Que sua boca seja instrumento de luz." },
+  { titulo: "Se Preserve, Fio", texto: "Num é egoísmo cuidar de si.\nQuem vive só apagando incêndio dos outros esquece da própria casa.\nEquilíbrio é sabedoria.", conselho: "🌿 Conselho: Reserve um tempo pra ocê.", bencao: "🙏 Benção: Que sua energia se renove." },
+  { titulo: "Inveja Só Entra em Porta Aberta", texto: "Se ocê anda inseguro demais, abre brecha.\nConfiança fecha passagem pra energia ruim.\nFirmeza interior é proteção.", conselho: "🌿 Conselho: Valorize sua própria caminhada.", bencao: "🙏 Benção: Que sua segurança lhe fortaleça." },
+  { titulo: "Fé é Escudo Invisível", texto: "Tem livramento que ocê nem percebe.\nEnquanto ocê dorme, o Alto trabalha.\nConfie mais no que protege do que no que ameaça.", conselho: "🌿 Conselho: Agradeça até o que não viu.", bencao: "🙏 Benção: Que sua fé lhe cubra de luz." },
+  { titulo: "Justiça do Alto Não Falha", texto: "Pode demorar…\nMas nunca falha.\nNum é seu papel punir.\nÉ seu papel agir certo.", conselho: "🌿 Conselho: Continue íntegro, mesmo quando ninguém vê.", bencao: "🙏 Benção: Que a verdade lhe sustente." },
+  { titulo: "Trabalho Limpa Caminho", texto: "Ô fio…\nTrabalho feito com honestidade vira proteção.\nMão que trabalha direito num precisa temê.\nProsperidade que vem limpa permanece.", conselho: "🌿 Conselho: Faça o que precisa ser feito, sem atalhos.", bencao: "🙏 Benção: Que seu esforço gere fruto justo." },
+  { titulo: "Dinheiro Sem Paz é Pobreza", texto: "Tem gente que tem muito…\nMas num dorme tranquilo.\nRiqueza de verdade é consciência leve.", conselho: "🌿 Conselho: Ganhe limpo e durma em paz.", bencao: "🙏 Benção: Que sua mesa nunca falte o necessário." },
+  { titulo: "Organiza Sua Vida, Fio", texto: "Bagunça de fora reflete bagunça de dentro.\nCasa arrumada ajuda mente a clareá.\nDisciplina é força silenciosa.", conselho: "🌿 Conselho: Organize algo hoje — mesmo pequeno.", bencao: "🙏 Benção: Que ordem traga equilíbrio." },
+  { titulo: "Constância Vale Mais que Pressa", texto: "Num adianta fazer muito num dia e nada no outro.\nQuem cresce é quem continua.\nPasso firme todo dia constrói estrada longa.", conselho: "🌿 Conselho: Faça um pouco, mas faça sempre.", bencao: "🙏 Benção: Que sua disciplina lhe sustente." },
+  { titulo: "Num Viva Acima do Que Pode", texto: "Aparência engana, fio.\nViver pra mostrar aos outros traz dívida e preocupação.\nSimplicidade é liberdade.", conselho: "🌿 Conselho: Gaste com consciência.", bencao: "🙏 Benção: Que nunca lhe falte equilíbrio." },
+  { titulo: "Planejamento é Sabedoria", texto: "Quem planta sem pensar colhe surpresa.\nOrganizar é respeitar o próprio futuro.\nPrevenir evita sofrimento.", conselho: "🌿 Conselho: Pense antes de agir.", bencao: "🙏 Benção: Que prudência guie suas decisões." },
+  { titulo: "Num Inveje o Sucesso Alheio", texto: "Ocê num sabe o preço que o outro pagou.\nCada um carrega cruz diferente.\nComparação só rouba sua paz.", conselho: "🌿 Conselho: Foque na sua caminhada.", bencao: "🙏 Benção: Que sua prosperidade seja única." },
+  { titulo: "Acorda com Propósito", texto: "Levantar só por obrigação pesa.\nLevantar com propósito fortalece.\nDescubra o porquê do seu esforço.", conselho: "🌿 Conselho: Lembre hoje o motivo da sua luta.", bencao: "🙏 Benção: Que sua jornada tenha sentido." },
+  { titulo: "Palavra Dada é Compromisso", texto: "Prometeu? Cumpra.\nCaráter vale mais que dinheiro.\nNome limpo é riqueza invisível.", conselho: "🌿 Conselho: Honre sua palavra.", bencao: "🙏 Benção: Que sua reputação seja firme." },
+  { titulo: "Seja Útil Onde Estiver", texto: "Num importa o tamanho da tarefa.\nImporta a intenção.\nQuem serve com dedicação cresce naturalmente.", conselho: "🌿 Conselho: Faça o melhor no lugar onde está.", bencao: "🙏 Benção: Que seu serviço seja reconhecido pelo Alto." },
+  { titulo: "Prosperidade Começa na Cabeça", texto: "Ô fio…\nSe ocê só pensa escassez, vive apertado mesmo com oportunidade na frente.\nMente pequena limita caminho grande.\nPrimeiro ajeita o pensamento… depois ajeita a vida.", conselho: "🌿 Conselho: Vigie seus pensamentos sobre dinheiro e sucesso.", bencao: "🙏 Benção: Que sua mente se abra para abundância limpa." },
+  { titulo: "Pare de Procrastiná", texto: "Ficar adiando é plantar arrependimento.\nO tempo num para pra esperá coragem, não.\nComece mesmo com medo.", conselho: "🌿 Conselho: Faça hoje o que anda empurrando.", bencao: "🙏 Benção: Que determinação lhe mova." },
+  { titulo: "Num Dependa Só de Sorte", texto: "Sorte visita quem trabalha.\nEsperar milagre sem fazer esforço é ilusão.\nO Alto ajuda quem se movimenta.", conselho: "🌿 Conselho: Dê o primeiro passo.", bencao: "🙏 Benção: Que sua atitude abra portas." },
+  { titulo: "Disciplina é Força Invisível", texto: "Ninguém aplaude quem acorda cedo.\nMas o resultado aparece.\nQuem vence quase sempre foi constante.", conselho: "🌿 Conselho: Crie rotina firme.", bencao: "🙏 Benção: Que sua perseverança traga conquista." },
+  { titulo: "Cresça Sem Pisá em Ninguém", texto: "Subir derrubando os outros enfraquece o espírito.\nVitória limpa traz paz.\nCaráter é riqueza que num se perde.", conselho: "🌿 Conselho: Construa sem prejudicar.", bencao: "🙏 Benção: Que seu sucesso seja justo." },
+  { titulo: "Num Espere Aplauso", texto: "Às vez ocê faz o certo…\nE ninguém reconhece.\nMas o Alto vê.\nE isso basta.", conselho: "🌿 Conselho: Continue certo, mesmo sem plateia.", bencao: "🙏 Benção: Que sua consciência seja leve." },
+  { titulo: "Aprenda a Dizê Não", texto: "Ficar agradando todo mundo esgota.\nLimite é proteção.\nQuem respeita seu tempo se valoriza.", conselho: "🌿 Conselho: Negue o que fere sua paz.", bencao: "🙏 Benção: Que sua firmeza seja respeitada." },
+  { titulo: "Pequenos Passos Também Valem", texto: "Num despreze progresso pequeno.\nGrão por grão enche o celeiro.\nConsistência supera pressa.", conselho: "🌿 Conselho: Valorize cada avanço.", bencao: "🙏 Benção: Que seu esforço seja acumulado em vitória." },
+  { titulo: "Não Reclame do Que Pode Resolver", texto: "Tem problema que é falta de atitude.\nReclamação sem ação é desperdício de energia.\nLevante e resolva.", conselho: "🌿 Conselho: Assuma responsabilidade hoje.", bencao: "🙏 Benção: Que coragem lhe acompanhe." },
+  { titulo: "Agradeça Antes de Dormir", texto: "Encerrar o dia reclamando fecha energia.\nEncerrar agradecendo fortalece espírito.\nGratidão é escudo.", conselho: "🌿 Conselho: Liste três coisas boas antes de dormir.", bencao: "🙏 Benção: Que seu descanso seja protegido." },
+  { titulo: "Respeite Seus Mais Velho", texto: "Ô fio…\nQuem veio antes abriu estrada pra ocê passá.\nPode até num concordá com tudo…\nMas respeito nunca sai de moda.", conselho: "🌿 Conselho: Honre quem lhe deu origem.", bencao: "🙏 Benção: Que suas raízes lhe sustentem." },
+  { titulo: "Família é Raiz", texto: "Raiz pode até entortar…\nMas é ela que segura a árvore.\nCuide dos seus enquanto há tempo.", conselho: "🌿 Conselho: Demonstre carinho hoje.", bencao: "🙏 Benção: Que seu lar tenha proteção." },
+  { titulo: "Perdão Cura Ferida Antiga", texto: "Mágoa envelhece o espírito.\nGuardar rancor é alimentar sombra.\nPerdoar é escolher liberdade.", conselho: "🌿 Conselho: Liberte o que pesa.", bencao: "🙏 Benção: Que seu coração respire alívio." },
+  { titulo: "Num Humilhe Ninguém", texto: "Palavra dura marca fundo.\nHumilhação deixa cicatriz invisível.\nSeja firme, mas seja justo.", conselho: "🌿 Conselho: Corrija sem ferir.", bencao: "🙏 Benção: Que sua fala seja equilibrada." },
+  { titulo: "Ame Com Verdade", texto: "Amor não é posse.\nAmor é cuidado, é respeito, é parceria.\nQuem ama protege, num aprisiona.", conselho: "🌿 Conselho: Ame sem controlar.", bencao: "🙏 Benção: Que seu amor seja leve." },
+  { titulo: "Seja Presença", texto: "Num adianta tá perto e ausente.\nEscutar de verdade é prova de carinho.\nPresença vale mais que presente.", conselho: "🌿 Conselho: Esteja inteiro onde estiver.", bencao: "🙏 Benção: Que seus vínculos se fortaleçam." },
+  { titulo: "Escute Antes de Julgá", texto: "Cada um carrega luta que ocê num vê.\nJulgar rápido é fácil.\nCompreender exige maturidade.", conselho: "🌿 Conselho: Ouça até o fim antes de reagir.", bencao: "🙏 Benção: Que sabedoria guie seus julgamentos." },
+  { titulo: "Cuide do Seu Lar", texto: "Casa num é só parede.\nÉ energia.\nDiscussão constante enfraquece ambiente.", conselho: "🌿 Conselho: Cultive paz dentro de casa.", bencao: "🙏 Benção: Que seu lar seja abrigo de luz." },
+  { titulo: "Num Leve Tudo Pro Lado Pessoal", texto: "Nem tudo é ataque.\nÀs vez o outro tá só ferido.\nAprenda a separar.", conselho: "🌿 Conselho: Reaja com equilíbrio.", bencao: "🙏 Benção: Que maturidade lhe acompanhe." },
+  { titulo: "Amor Também é Limite", texto: "Amar num é aceitar desrespeito.\nLimite ensina valor.\nQuem se respeita é respeitado.", conselho: "🌿 Conselho: Estabeleça limites com firmeza e calma.", bencao: "🙏 Benção: Que dignidade proteja suas relações." },
+  { titulo: "Num Exponha Sua Intimidade", texto: "Ô fio…\nNem todo mundo que escuta tá torcendo por ocê.\nVida íntima é coisa sagrada.\nO que é do lar, fica no lar.", conselho: "🌿 Conselho: Preserve o que é precioso.", bencao: "🙏 Benção: Que sua casa seja protegida." },
+  { titulo: "Fidelidade é Caráter", texto: "Ser fiel num é só no amor, não.\nÉ na palavra, no compromisso, na amizade.\nQuem trai confiança perde valor.", conselho: "🌿 Conselho: Seja leal em tudo que assumir.", bencao: "🙏 Benção: Que sua integridade seja reconhecida." },
+  { titulo: "Ensine Pelo Exemplo", texto: "Ocê pode falá bonito…\nMas o que ensina mesmo é atitude.\nCriança aprende olhando.\nAdulto também.", conselho: "🌿 Conselho: Viva o que cobra dos outros.", bencao: "🙏 Benção: Que seu exemplo ilumine." },
+  { titulo: "Seja Apoio, Num Peso", texto: "Tem gente que chega trazendo solução.\nTem gente que só aumenta problema.\nEscolha ser quem soma.", conselho: "🌿 Conselho: Ofereça ajuda, não crítica vazia.", bencao: "🙏 Benção: Que sua presença traga conforto." },
+  { titulo: "Num Alimente Conflito", texto: "Discussão é fogo.\nSe dois colocam lenha, vira incêndio.\nAlguém precisa ser água.", conselho: "🌿 Conselho: Seja o equilíbrio da situação.", bencao: "🙏 Benção: Que sua calma apague tempestade." },
+  { titulo: "Amor é Construção", texto: "Relacionamento num vive só de sentimento.\nVive de escolha diária.\nCuidar é decisão constante.", conselho: "🌿 Conselho: Cultive o amor todo dia.", bencao: "🙏 Benção: Que união seja fortalecida." },
+  { titulo: "Valorize Quem Fica", texto: "Tem gente que sempre esteve ali.\nE ocê só percebe quando falta.\nGratidão evita arrependimento.", conselho: "🌿 Conselho: Demonstre apreço hoje.", bencao: "🙏 Benção: Que laços verdadeiros permaneçam." },
+  { titulo: "Num Abandone Quem Sempre Lutou por Ocê", texto: "Raiz que sustenta merece respeito.\nQuem esteve nas fases difíceis tem valor dobrado.\nMemória também é gratidão.", conselho: "🌿 Conselho: Honre quem foi apoio na sua caminhada.", bencao: "🙏 Benção: Que lealdade fortaleça seus vínculos." },
+  { titulo: "Demonstre Gratidão", texto: "Pensar agradecido é bom.\nFalar agradecido é melhor ainda.\nPalavra sincera aquece coração.", conselho: "🌿 Conselho: Agradeça alguém hoje.", bencao: "🙏 Benção: Que reconhecimento multiplique amor." },
+  { titulo: "Lar é Templo", texto: "Casa num é só descanso do corpo.\nÉ descanso da alma.\nSe dentro de casa há paz, metade da batalha já tá vencida.", conselho: "🌿 Conselho: Faça do seu lar um lugar de harmonia.", bencao: "🙏 Benção: Que proteção cubra sua família." },
+  { titulo: "Reza Todo Dia, Fio", texto: "Num espere o aperto chegá pra lembrá do Alto.\nReza diária fortalece antes da tempestade.\nQuem ora todo dia caminha protegido.", conselho: "🌿 Conselho: Separe um momento de oração hoje.", bencao: "🙏 Benção: Que sua fé seja constante." },
+  { titulo: "Milagre Também Exige Movimento", texto: "Ô fio…\nNum adianta só pedí.\nTem que fazê sua parte.\nO Alto abre porta…\nMas é ocê que atravessa.", conselho: "🌿 Conselho: Dê um passo na direção do que pede.", bencao: "🙏 Benção: Que seus caminhos se alinhem." },
+  { titulo: "Reforma Começa Dentro", texto: "Ocê quer mudança lá fora…\nMas num arruma o que tá dentro.\nEspiritualidade é melhoria diária.\nOlhe pra si com sinceridade.", conselho: "🌿 Conselho: Corrija um hábito hoje.", bencao: "🙏 Benção: Que evolução lhe acompanhe." },
+  { titulo: "Caridade Limpa Espírito", texto: "Ajudar sem interesse ilumina o caminho.\nCaridade é remédio da alma.\nQuem ajuda cresce por dentro.", conselho: "🌿 Conselho: Faça o bem sem esperar retorno.", bencao: "🙏 Benção: Que generosidade lhe proteja." },
+  { titulo: "Vigia Seus Pensamento", texto: "Pensamento negativo é semente ruim.\nSe alimenta, cresce.\nControle começa na mente.", conselho: "🌿 Conselho: Corte ideia que enfraquece.", bencao: "🙏 Benção: Que sua mente seja guardada." },
+  { titulo: "Cuidado Com o Que Deseja", texto: "Às vez ocê pede coisa que ainda num sabe carregar.\nNem tudo que brilha é bênção.\nDiscernimento evita queda.", conselho: "🌿 Conselho: Peça sabedoria antes de pedir conquista.", bencao: "🙏 Benção: Que clareza guie seus desejos." },
+  { titulo: "Frequente Lugar Que Eleva", texto: "Ambiente pesa ou fortalece.\nSe só anda onde há desordem, sua energia sente.\nEscolha onde pisa.", conselho: "🌿 Conselho: Procure ambiente de luz.", bencao: "🙏 Benção: Que seus passos sejam guiados." },
+  { titulo: "Respeite Seus Ancestral", texto: "Ocê num chegou aqui sozinho.\nTem história antes da sua história.\nHonrar o passado fortalece o presente.", conselho: "🌿 Conselho: Agradeça suas raízes.", bencao: "🙏 Benção: Que sabedoria ancestral lhe sustente." },
+  { titulo: "Num Brinque Com Espiritualidade", texto: "Espiritualidade é coisa séria.\nFé num é moda, nem palco.\nRespeito mantém proteção.", conselho: "🌿 Conselho: Seja verdadeiro na sua crença.", bencao: "🙏 Benção: Que sua conduta lhe guarde." },
+  { titulo: "Gratidão Aos Guia", texto: "Tem livramento que ocê nem percebe.\nEnquanto ocê dorme, tem proteção trabalhando.\nReconheça o cuidado invisível.", conselho: "🌿 Conselho: Agradeça pelas proteções que nem viu.", bencao: "🙏 Benção: Que a luz lhe acompanhe sempre." },
+  { titulo: "Fé Num é Ataque", texto: "Ô fio…\nNum use sua fé pra feri ninguém.\nEspiritualidade num é arma.\nÉ luz.\nQuem tá firme num precisa diminuir o outro.", conselho: "🌿 Conselho: Defenda sua crença com respeito.", bencao: "🙏 Benção: Que sua fé seja ponte, não muro." },
+  { titulo: "Seja Verdadeiro", texto: "O Alto num se engana com aparência.\nPode enganá gente…\nMas consciência sabe.\nViva limpo por dentro.", conselho: "🌿 Conselho: Seja o mesmo em todo lugar.", bencao: "🙏 Benção: Que sua verdade lhe proteja." },
+  { titulo: "Controle Sua Língua", texto: "Palavra constrói…\nMas também derruba.\nAntes de falá, pense se edifica.\nSe num edifica, silencia.", conselho: "🌿 Conselho: Use a fala com responsabilidade.", bencao: "🙏 Benção: Que sua boca seja instrumento de paz." },
+  { titulo: "Tempestade Também Passa", texto: "Num existe dor eterna.\nTudo é fase.\nAssim como a noite vira dia…\nSua dificuldade também muda.", conselho: "🌿 Conselho: Aguente firme mais um pouco.", bencao: "🙏 Benção: Que resistência lhe sustente." },
+  { titulo: "Num Desista Agora", texto: "Ocê já atravessou coisa que achou que num ia suportá.\nE tá aqui.\nEntão aguenta mais um passo.", conselho: "🌿 Conselho: Continue mesmo cansado.", bencao: "🙏 Benção: Que coragem renove sua força." },
+  { titulo: "Sua História Tem Propósito", texto: "Nada do que ocê viveu foi à toa.\nAté erro ensina.\nAté dor fortalece.", conselho: "🌿 Conselho: Enxergue aprendizado na sua trajetória.", bencao: "🙏 Benção: Que entendimento traga paz." },
+  { titulo: "Gratidão Multiplica", texto: "Quanto mais agradece, mais percebe bênção.\nReclamação cega.\nGratidão clareia.", conselho: "🌿 Conselho: Agradeça até o simples.", bencao: "🙏 Benção: Que abundância lhe encontre." },
+  { titulo: "Continue Evoluindo", texto: "Espiritualidade num tem linha de chegada.\nTodo dia é oportunidade de melhorar.\nPequeno avanço também é crescimento.", conselho: "🌿 Conselho: Corrija um detalhe seu hoje.", bencao: "🙏 Benção: Que evolução seja constante." },
+  { titulo: "Caminhe Com Firmeza", texto: "Pode até ter medo…\nMas vá mesmo assim.\nCoragem num é ausência de medo.\nÉ decisão apesar dele.", conselho: "🌿 Conselho: Faça o que precisa ser feito.", bencao: "🙏 Benção: Que firmeza guie seus passos." },
+  { titulo: "Leve as 5 Cruzes no Coração", texto: "Fé.\nPaciência.\nHumildade.\nSabedoria.\nResistência.\n\nSe carregar isso dentro do peito…\nOcê atravessa qualquer estrada.\n\nO café pode acabá na xícara…\nMas ensinamento fica na alma.", conselho: "🌿 Conselho: Pratique uma dessas forças todo dia.", bencao: "🙏 Benção Final:\nQue a luz da sabedoria ancestral lhe acompanhe,\nque seus caminhos sejam guardados\ne que sua fé nunca se apague.\n\nSaravá, meu fio. ☕" },
+];
+
+function formatarData(dateObj) {
+  const d = dateObj.getDate().toString().padStart(2,'0');
+  const m = (dateObj.getMonth()+1).toString().padStart(2,'0');
+  const a = dateObj.getFullYear();
+  return `${d}/${m}/${a}`;
+}
+
+function calcularData(baseDate, offsetDias) {
+  const d = new Date(baseDate);
+  d.setDate(d.getDate() + offsetDias);
+  return formatarData(d);
+}
+
+let cardAberto = null;
+
+function renderCards(baseDate) {
+  const container = document.getElementById('cardsContainer');
+  container.innerHTML = '';
+  cardAberto = null;
+
+  dias.forEach((dia, i) => {
+    const num = i + 1;
+    const dataStr = baseDate ? calcularData(baseDate, i) : null;
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.index = i;
+
+    card.innerHTML = `
+      <div class="card-header" role="button" tabindex="0" aria-expanded="false">
+        <div class="card-header-left">
+          <span class="card-numero">Dia ${num}</span>
+          <span class="card-titulo">${dia.titulo}</span>
+        </div>
+        ${dataStr ? `<span class="card-data-badge visivel">${dataStr}</span>` : `<span class="card-data-badge"></span>`}
+        <span class="card-toggle">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p class="card-texto">${dia.texto}</p>
+          <div class="card-conselho">${dia.conselho}</div>
+          <div class="card-bencao">${dia.bencao}</div>
+          <button class="btn-topo" onclick="document.getElementById('topo').scrollIntoView({behavior:'smooth'})">↑ Voltar ao início</button>
+        </div>
+      </div>
+    `;
+
+    const header = card.querySelector('.card-header');
+    header.addEventListener('click', () => toggleCard(card));
+    header.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCard(card); } });
+
+    container.appendChild(card);
+  });
+}
+
+function toggleCard(card) {
+  if (cardAberto && cardAberto !== card) {
+    cardAberto.classList.remove('aberto');
+    cardAberto.querySelector('.card-header').setAttribute('aria-expanded','false');
+  }
+  card.classList.toggle('aberto');
+  const isOpen = card.classList.contains('aberto');
+  card.querySelector('.card-header').setAttribute('aria-expanded', isOpen);
+  cardAberto = isOpen ? card : null;
+
+  if (isOpen) {
+    setTimeout(() => {
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+}
+
+// Init
+renderCards(null);
+
+document.getElementById('dataInicio').addEventListener('change', function() {
+  if (this.value) {
+    const [y, m, d] = this.value.split('-').map(Number);
+    const base = new Date(y, m-1, d);
+    renderCards(base);
+  } else {
+    renderCards(null);
+  }
+});
+</script>
+</body>
+</html>
